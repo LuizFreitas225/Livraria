@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>Livraria Evolution</title>
+</h:head>
+<h:body>
+	<h1>Cadastro de Livros</h1>
+	
+	
+	                    
+	<h:messages id="mensagemValidacao" style="color:red;margin:8px;" />
+	<h:form styleClass="form" id="formularioEnvio">
+		<h:panelGrid id="gridInputs" columns="2" styleClass="painel">
+
+
+
+
+			<h:outputLabel value="Nome:" styleClass="label" />
+			<h:inputText value="#{cadastroController.livro.nome}"
+				styleClass="input">
+
+			</h:inputText>
+
+			<h:outputLabel value="Capa:" styleClass="label" />
+			<h:selectOneMenu value="#{cadastroController.livro.capa}"
+				styleClass="input">
+				<f:selectItems value="#{cadastroController.listarCapa}" var="obj"
+					itemLabel="#{obj.label}" />
+            </h:selectOneMenu>
+				
+				
+
+			<h:outputLabel value="Páginas:" styleClass="label" />
+			<h:inputText value="#{cadastroController.livro.qtPaginas}"
+				styleClass="input">
+
+			</h:inputText>
+
+			
+			<h:outputLabel value="Descrição:" styleClass="label" />
+			<h:inputText value="#{cadastroController.livro.descricao}"
+				styleClass="input" />
+				
+				<h:outputLabel value="Categoria:" styleClass="label" />
+			<h:selectOneMenu value="#{cadastroController.livro.categoria}"
+				styleClass="input">
+				<f:selectItems value="#{cadastroController.listarCategoria}" var="obj"
+					itemLabel="#{obj.label}" />
+            </h:selectOneMenu>
+            
+            
+            
+            <h:outputLabel value="Data de Publicação:" />
+			<h:inputText value="#{cadastroController.livro.dataPublicacao}"
+				converterMessage="A data deve serguir o seguinte formato: Ex.: 20/10/2000">
+				<f:convertDateTime type="localDate" pattern="dd/MM/yyyy"/>
+				<f:ajax event="blur" execute="inputData" render="mensagemValidacao" />
+			</h:inputText>
+
+			<h:outputLabel value="Preço:" styleClass="label" />
+			<h:inputText value="#{cadastroController.livro.preco}"
+				styleClass="input" />
+				
+					<h:outputLabel value="Autor:" styleClass="label" />
+			<h:inputText value="#{cadastroController.livro.autor}"
+				styleClass="input" />
+				
+						<h:outputLabel value="Estoque:" styleClass="label" />
+			<h:inputText value="#{cadastroController.livro.estoque}"
+				styleClass="input" />
+
+            
+
+		</h:panelGrid>
+		<h:panelGrid id="gridBtn" columns="4">
+			<h:commandButton value="Incluir"
+				styleClass="button" actionListener="#{cadastroController.incluir}">
+				<f:ajax execute="@this  formularioEnvio:gridInputs"
+					render="formularioEnvio:gridInputs pgDataTable mensagemValidacao" />
+             </h:commandButton>
+             
+             <h:commandButton value="Limpar" styleClass="button"
+				actionListener="#{cadastroController.limpar}">
+				<f:ajax execute="@this"
+					render="formularioEnvio:gridInputs formularioEnvio:gridBtn" />
+			</h:commandButton>
+			
+			<h:commandButton value="Alterar"
+				disabled="#{cadastroController.livro.id == null}"
+				styleClass="button" actionListener="#{cadastroController.alterar}">
+				<f:ajax execute="@this  formularioEnvio:gridInputs"
+					render="formularioEnvio:gridInputs pgDataTable mensagemValidacao" />
+			</h:commandButton>
+		</h:panelGrid>
+		</h:form>
+</h:body>
+</html>
