@@ -84,6 +84,10 @@
 					<h:outputLabel value="#{obj.estoque}" />
 				</h:column>
 				<h:column>
+					<f:facet name="header">Descrição</f:facet>
+					<h:outputLabel value="#{obj.descricao}" />
+				</h:column>
+				<h:column>
 					<f:facet name="header">Opções</f:facet>
 					<h:commandButton value="Editar" styleClass="button"  id="editar"
 						action="#{consultaController.editar(obj)}">

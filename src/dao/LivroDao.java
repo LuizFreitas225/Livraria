@@ -37,7 +37,8 @@ int ultimoId=0;
 		String sql= "UPDATE livro SET   descricao = ' "+ obj.getDescricao() + " ',"
 				+ " capa= ' "+ obj.getCapa().getValue() + " ', Categoria= ' " +obj.getCategoria().getValue() + " ',"
 						+ "preco= ' "+ obj.getPreco() + " ', nome= ' "+ obj.getNome() + " ', qt_paginas= ' "+ obj.getQtPaginas()+
-						"' , data_publicacao=  '" +obj.getDataPublicacao()+"' , estoque=  '" +obj.getEstoque()+"' WHERE id=" +obj.getId();
+						"' , data_publicacao=  '" +obj.getDataPublicacao()+"' , estoque=  '" +obj.getEstoque()+"'"
+						+ ", Autor= ' " +obj.getAutor() +"' WHERE id=" +obj.getId();
 	
 		  return DAO.executaSql(sql);
 		
